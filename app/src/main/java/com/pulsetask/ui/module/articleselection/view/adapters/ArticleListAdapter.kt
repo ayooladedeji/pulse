@@ -47,6 +47,12 @@ class ArticleListAdapter(items: List<Article>, private val onItemClickListener: 
         }
     }
 
+    fun update(items: List<Article>){
+        this.items.clear()
+        this.items.addAll(items)
+        notifyDataSetChanged()
+    }
+
     fun getItemAt(position: Int): Article = items[position]
 
     override fun getItemCount(): Int = items.size

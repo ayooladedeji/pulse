@@ -46,9 +46,13 @@ class ArticleSelectionActivity : AppCompatActivity(), IArticleSelection.View, Ar
     }
 
     override fun updateRecyclerView(items: List<Article>) {
-        adapter = ArticleListAdapter(items, this)
-        recycler_view.layoutManager = LinearLayoutManager(this)
-        recycler_view.adapter = adapter
+        try {
+            adapter.update(items)
+        } catch (e: UninitializedPropertyAccessException) {
+            adapter = ArticleListAdapter(items, this)
+            recycler_view.layoutManager = LinearLayoutManager(this)
+            recycler_view.adapter = adapter
+        }
     }
 
     private fun subscribeViews() {
