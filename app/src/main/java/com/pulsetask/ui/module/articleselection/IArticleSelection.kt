@@ -3,6 +3,7 @@ package com.pulsetask.ui.module.articleselection
 import com.pulsetask.datamodel.Article
 import io.reactivex.Single
 import io.reactivex.subjects.BehaviorSubject
+import java.lang.ref.WeakReference
 
 /**
  * Created by ayoola on 29/09/2017.
@@ -13,7 +14,7 @@ interface IArticleSelection {
 
         val articleListValue: BehaviorSubject<List<Article>>
 
-        var view: View
+        var viewReference: WeakReference<View>
 
         fun loadArticleList()
 

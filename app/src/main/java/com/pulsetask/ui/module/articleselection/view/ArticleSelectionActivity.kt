@@ -13,6 +13,7 @@ import com.pulsetask.ui.dialogs.SimpleDialog
 import kotlinx.android.synthetic.main.activity_article_selection.*
 import android.view.View
 import com.pulsetask.api.errorArticleResponse
+import java.lang.ref.WeakReference
 
 class ArticleSelectionActivity : AppCompatActivity(), IArticleSelection.View, ArticleListAdapter.IOnItemClickListener {
 
@@ -24,7 +25,7 @@ class ArticleSelectionActivity : AppCompatActivity(), IArticleSelection.View, Ar
         setContentView(R.layout.activity_article_selection)
 
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
-        viewModel.view = this
+        viewModel.viewReference = WeakReference(this)
         viewModel.loadArticleList()
         subscribeViews()
 
